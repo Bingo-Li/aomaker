@@ -22,9 +22,7 @@ def __parse_swagger(parm):
         key = path.split('/')
         module_name = key[1]  # 模块名称
         api_name: str = key[-1]  # api名称
-        for i in api_name:
-            if i.isupper():
-                api_name = api_name.replace(i, f'_{i.lower()}')
+        api_name = api_name.lower()
         if api_name.startswith('{'):
             api_name = f'get_{key[-2]}_by_{api_name.strip("{}")}'
         if not final_data.get(module_name):  # 如果模块名不存在，新建该键
